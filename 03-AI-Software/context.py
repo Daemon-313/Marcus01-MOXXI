@@ -88,6 +88,20 @@ class ConversationContext:
         ):
             return self.active_topic
 
+        # Do not select the robot topic when the user explicitly
+        # says they are referring to something else.
+        negative_robot_reference = (
+            r"^not\s+(?:marcus-01|marcus01|the robot)\b",
+            r"^i\s+don['’]t\s+mean\s+(?:marcus-01|marcus01|the robot)\b",
+            r"^i\s+do\s+not\s+mean\s+(?:marcus-01|marcus01|the robot)\b",
+            r"^i['’]?m\s+not\s+talking\s+about\s+(?:marcus-01|marcus01|the robot)\b",
+            r"^i\s+am\s+not\s+talking\s+about\s+(?:marcus-01|marcus01|the robot)\b",
+        )
+
+        if any(re.search(pattern, text) for pattern in negative_robot_reference):
+            self.clear()
+            return self.active_topic
+
         if any(term in text for term in robot_terms):
             self.active_topic = "robot"
             return self.active_topic
