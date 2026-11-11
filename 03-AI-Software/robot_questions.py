@@ -14,6 +14,7 @@ HEIGHT_PATTERNS = (
     r"\bwhat(?:'s| is) your planned height\b",
     r"\bhow tall are you going to be\b",
     r"\bwhat about your height\b",
+    r"\bwhat about its height\b",
     r"\bhow big are you going to be\b",
 )
 
@@ -39,6 +40,7 @@ WHEEL_SELECTION_PATTERNS = (
     r"\bwhat kind of wheels are you getting\b",
     r"\bhave you picked your wheels yet\b",
     r"\bwhat kind of wheels will you have\b",
+    r"\bwhat about the wheels\b",
 )
 
 COMPLETION_PATTERNS = (
@@ -47,6 +49,7 @@ COMPLETION_PATTERNS = (
     r"\bdo you know when you(?:'ll| will) be finished\b",
     r"\bwhen do you think you(?:'ll| will) be built\b",
     r"\bwhen will you be finished\b",
+    r"\bwhen will it be finished\b",
     r"\bhow long until you(?:'re| are) built\b",
 )
 
