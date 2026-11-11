@@ -18,6 +18,19 @@ class ConversationContext:
 
         text = message.casefold().strip()
 
+        # Recognize explicit corrections to the conversation topic.
+        correction_patterns = (
+            r"^not\s+(?:marcus-01|marcus01|the robot)\.\s*i\s+mean\s+my\s+(car|laptop)\s*[.!?]?$",
+            r"^no,?\s*i\s+meant\s+my\s+(car|laptop)\s*[.!?]?$",
+            r"^actually,?\s*i(?:['\u2019]m|\s+am)\s+talking\s+about\s+my\s+(car|laptop)\s*[.!?]?$",
+        )
+
+        for pattern in correction_patterns:
+            match = re.fullmatch(pattern, text)
+            if match:
+                self.active_topic = match.group(1)
+                return self.active_topic
+
         # Clear outdated context when the user explicitly
         # changes or ends the current subject.
         topic_changes = (
