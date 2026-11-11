@@ -25,6 +25,7 @@ def respond_with_clarification(message, context):
         r"^what(?:'s| is) its height$",
         r"^how high will it stand$",
         r"^how big is it$",
+        r"^(?:and )?what about its height$",
     )
 
     if any(re.search(pattern, text) for pattern in height_patterns):
@@ -40,6 +41,7 @@ def respond_with_clarification(message, context):
         r"^what kind of wheels will it have$",
         r"^what wheels will it use$",
         r"^how will it get around$",
+        r"^(?:and )?what about the wheels$",
     )
 
     if any(re.search(pattern, text) for pattern in movement_patterns):
@@ -48,7 +50,7 @@ def respond_with_clarification(message, context):
             "MARCUS-01 or something else?"
         )
 
-    if re.search(r"^when will it be ready$", text):
+    if re.search(r"^(?:and )?when will it be (?:ready|finished)$", text):
         return (
             "Which project do you mean, sugar? "
             "MARCUS-01, or something else?"
