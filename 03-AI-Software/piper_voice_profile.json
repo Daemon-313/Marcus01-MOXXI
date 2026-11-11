@@ -1,0 +1,14 @@
+{
+    "schema_version": 1,
+    "engine": "piper",
+    "model": "en_US-amy-medium",
+    "length_scale": 1.12,
+    "noise_scale": 0.667,
+    "audio_gain": 0.55,
+    "enabled": false,
+    "personality": {
+        "accent_style": "southern_inspired",
+        "delivery": "warm_playful_confident",
+        "preferred_address": "sugar"
+    }
+}

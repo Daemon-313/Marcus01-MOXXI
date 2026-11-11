@@ -1,0 +1,69 @@
+{
+    "project": "MARCUS-01 / MOXXI",
+    "version": "0.1",
+    "created_at": "2026-11-09T21:08:01",
+    "status": "Text assistant foundation validated",
+    "test_suite": "test_moxxi_v01.py",
+    "tests_passed": 11,
+    "capabilities": [
+        "Text conversation",
+        "Personality responses",
+        "Persistent name memory",
+        "Conversation history",
+        "Conversation recall",
+        "Structured robot knowledge",
+        "Knowledge-based answers"
+    ],
+    "planned": [
+        "Voice input",
+        "Voice output",
+        "Onboard computing",
+        "Robot motion control"
+    ],
+    "files": {
+        "moxxi.py": {
+            "size_bytes": 1360,
+            "sha256": "16b45d42857f819e7dc011b4a1856fe0202f93de65734bed1943794637afa18b"
+        },
+        "conversation.py": {
+            "size_bytes": 4885,
+            "sha256": "8dcbd72fb5a7ddeb05cfb1a9701b6c581c474989fb00963ece319e17003f8801"
+        },
+        "memory.py": {
+            "size_bytes": 631,
+            "sha256": "e9cb22e487de63ce529c261537bc31a76da46525de1d7ae193e0b7249bd4ff91"
+        },
+        "responses.py": {
+            "size_bytes": 1102,
+            "sha256": "d4c64ac2cc01c203a0bc6634c4d0a8580525917f18f78b669ef2114002294daa"
+        },
+        "history.py": {
+            "size_bytes": 2775,
+            "sha256": "e874cb00040230a4125bae56035f66cd8702a6179056a94655ca8032eeb12cff"
+        },
+        "topics.py": {
+            "size_bytes": 1412,
+            "sha256": "d7e1b3d625e8627c9f8d81fc93a7ba7341e1a5de4abada0e46659daec3818c59"
+        },
+        "knowledge.py": {
+            "size_bytes": 3070,
+            "sha256": "4498f8f81e5eb9c58710b6d07ae91bbc81f3deb21824eff2dc308ec79bea6827"
+        },
+        "memory.json": {
+            "size_bytes": 56,
+            "sha256": "9dbde5b2ba317f532eefc3df3ff29baca287a35e02cf354b0ae5b0a0fb2f905d"
+        },
+        "conversation_history.json": {
+            "size_bytes": 4855,
+            "sha256": "bb10ad2986ac7a35a859e705d0c75dd6544d129a67d04c74457bb8d34cfa9f35"
+        },
+        "knowledge.json": {
+            "size_bytes": 1183,
+            "sha256": "9c70cd664d4322923309ce6d67a918f444a87f547d774b6fe08fa0a80ee41f2f"
+        },
+        "test_moxxi_v01.py": {
+            "size_bytes": 2160,
+            "sha256": "2fb1309b1b3c13d226efebc2ed0cbd76d953c35c64d01d5513a9a99ecfc5290e"
+        }
+    }
+}

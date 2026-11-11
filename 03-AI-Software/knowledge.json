@@ -1,0 +1,34 @@
+{
+    "schema_version": 1,
+    "robot": {
+        "project_name": "MARCUS-01",
+        "ai_name": "MOXXI",
+        "robot_type": "Mobile AI assistant robot",
+        "target_height_inches": 42,
+        "body_design": "Capsule-shaped body",
+        "design_theme": "Black and gunmetal Detroit cyberpunk",
+        "face": "Animated LED face inside dome",
+        "display": "Hidden touchscreen"
+    },
+    "hardware": {
+        "drive_configuration": "Two powered side wheels",
+        "stability": "Concealed rear caster",
+        "electronics_rack": "Removable serviceable rack",
+        "battery_location": "Low inside chassis",
+        "ventilation": "Ventilated electronics compartment"
+    },
+    "software": {
+        "assistant_name": "MOXXI",
+        "language": "Python",
+        "current_interface": "Text-based terminal",
+        "conversation_history": true,
+        "persistent_memory": true,
+        "conversation_recall": true,
+        "structured_knowledge": true,
+        "voice_interface": "Planned",
+        "robot_motion_control": "Planned"
+    },
+    "design_decisions": [],
+    "project_milestones": [],
+    "learned_facts": []
+}
