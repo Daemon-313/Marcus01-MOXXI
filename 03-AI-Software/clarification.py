@@ -12,9 +12,9 @@ def respond_with_clarification(message, context):
     if context is None:
         return None
 
-    # Robot follow-ups are handled by the robot context system.
-    # Other topics do not establish what an ambiguous "it" means.
-    if context.get_topic() == "robot":
+    # A known topic provides context for follow-up questions.
+    # Only ask which subject is meant when no topic is established.
+    if context.get_topic() in ("robot", "car", "laptop"):
         return None
 
     text = message.casefold().strip().rstrip("?.!")
