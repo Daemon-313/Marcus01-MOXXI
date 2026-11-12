@@ -9,6 +9,7 @@ class ConversationContext:
 
     def __init__(self):
         self.active_topic = None
+        self.active_subtopic = None
 
     def update(self, message):
         """Recognize an explicitly mentioned topic."""
@@ -28,7 +29,7 @@ class ConversationContext:
         for pattern in correction_patterns:
             match = re.fullmatch(pattern, text)
             if match:
-                self.active_topic = match.group(1)
+                self.set_topic(match.group(1))
                 return self.active_topic
 
         # Clear outdated context when the user explicitly
@@ -83,7 +84,7 @@ class ConversationContext:
             robot_question is not None
             and text.rstrip("?.!") in explicit_robot_questions
         ):
-            self.active_topic = "robot"
+            self.set_topic("robot")
             return self.active_topic
 
         robot_terms = (
@@ -116,7 +117,7 @@ class ConversationContext:
             return self.active_topic
 
         if any(term in text for term in robot_terms):
-            self.active_topic = "robot"
+            self.set_topic("robot")
             return self.active_topic
 
         topic_terms = {
@@ -148,7 +149,7 @@ class ConversationContext:
 
         for topic, terms in topic_terms.items():
             if any(term in text for term in terms):
-                self.active_topic = topic
+                self.set_topic(topic)
                 return self.active_topic
 
         return self.active_topic
@@ -160,6 +161,36 @@ class ConversationContext:
     def clear(self):
         """Forget the current conversation topic."""
         self.active_topic = None
+        self.active_subtopic = None
+
+    def set_topic(self, topic):
+        """Change topics and clear outdated subtopic memory."""
+        if topic != self.active_topic:
+            self.active_subtopic = None
+
+        self.active_topic = topic
+        return self.active_topic
+
+    def set_subtopic(self, subtopic):
+        """Remember the current conversational subtopic."""
+        if not isinstance(subtopic, str):
+            return False
+
+        subtopic = subtopic.strip()
+
+        if not subtopic:
+            return False
+
+        self.active_subtopic = subtopic
+        return True
+
+    def get_subtopic(self):
+        """Return the current conversational subtopic."""
+        return self.active_subtopic
+
+    def clear_subtopic(self):
+        """Forget the current conversational subtopic."""
+        self.active_subtopic = None
 
     def is_robot_followup(self, message):
         """Detect robot follow-ups using the shared classifier."""

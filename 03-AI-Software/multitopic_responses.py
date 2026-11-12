@@ -131,6 +131,28 @@ def respond_with_multitopic_context(message, context):
 
     # Context-aware follow-ups for everyday topics.
     if topic == "laptop":
+        if text in ("battery life", "the battery life"):
+            context.set_subtopic("battery_life")
+            return (
+                "Gotcha, sugar! Are you having trouble "
+                "with how long your laptop lasts between charges?"
+            )
+
+        if (
+            context.get_subtopic() == "battery_life"
+            and text in (
+                "how can i improve it",
+                "how do i improve it",
+                "how can i make it last longer",
+            )
+        ):
+            return (
+                "To improve your laptop's battery life, sugar, "
+                "try lowering screen brightness, using battery "
+                "saver mode, and closing unnecessary background "
+                "applications."
+            )
+
         if re.fullmatch(r"(?:and )?(?:what about (?:its|the) battery|how['’]s its battery|tell me about its battery)", text):
             return (
                 "Your laptop's battery, sugar? "
