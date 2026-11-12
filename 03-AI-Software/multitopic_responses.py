@@ -131,7 +131,7 @@ def respond_with_multitopic_context(message, context):
 
     # Context-aware follow-ups for everyday topics.
     if topic == "laptop":
-        if re.fullmatch(r"(?:and )?what about its battery", text):
+        if re.fullmatch(r"(?:and )?(?:what about (?:its|the) battery|how['’]s its battery|tell me about its battery)", text):
             return (
                 "Your laptop's battery, sugar? "
                 "Are we looking at battery life, charging, "
@@ -139,14 +139,14 @@ def respond_with_multitopic_context(message, context):
             )
 
     if topic == "car":
-        if re.fullmatch(r"(?:and )?what about the wheels", text):
+        if re.fullmatch(r"(?:and )?(?:what about (?:the|its) wheels|how about the tires)", text):
             return (
                 "Your car's wheels, darling? "
                 "Are you thinking about tires, wheel sizes, "
                 "or something else?"
             )
 
-        if re.fullmatch(r"(?:and )?its engine", text):
+        if re.fullmatch(r"(?:and )?(?:its engine|tell me about its engine)", text):
             return (
                 "What would you like to know about "
                 "your car's engine, sugar?"
