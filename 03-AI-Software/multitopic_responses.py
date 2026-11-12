@@ -129,6 +129,38 @@ def respond_with_multitopic_context(message, context):
                 "are still on our development roadmap."
             )
 
+    # Handle answers about the original laptop charger.
+    if (
+        topic == "laptop"
+        and context.get_subtopic() == "charging"
+        and context.get_troubleshooting_step()
+        == "checking_original_charger"
+    ):
+        answer = re.sub(r"\s+", " ", text.replace(",", " ")).strip()
+
+        if answer in (
+            "yes", "yes i am", "yes it's the original",
+            "yes it is", "i'm using the original charger",
+        ):
+            context.set_troubleshooting_step("checking_charging_warning")
+            return (
+                "Alright, sugar! Since you're using the original "
+                "charger, let's narrow this down. Does your laptop "
+                "show any charging error or battery warning?"
+            )
+
+        if answer in (
+            "no", "no i'm not", "no i am not",
+            "no it's a replacement", "i'm using a replacement",
+        ):
+            context.clear_troubleshooting_step()
+            return (
+                "Gotcha, darling. A replacement charger might not "
+                "supply the power your laptop needs. Check that its "
+                "wattage, voltage, and connector match your laptop's "
+                "requirements. What's your laptop's model number?"
+            )
+
     # Context-aware follow-ups for everyday topics.
     if (
         topic == "laptop"
@@ -143,7 +175,7 @@ def respond_with_multitopic_context(message, context):
             "yes but it's not charging",
             "yes but it is not charging",
         ):
-            context.clear_troubleshooting_step()
+            context.set_troubleshooting_step("checking_original_charger")
             return (
                 "Gotcha, sugar! Your laptop detects the charger, "
                 "but the battery percentage isn't increasing. "
