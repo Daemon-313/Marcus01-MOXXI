@@ -10,6 +10,7 @@ class ConversationContext:
     def __init__(self):
         self.active_topic = None
         self.active_subtopic = None
+        self.troubleshooting_step = None
 
     def update(self, message):
         """Recognize an explicitly mentioned topic."""
@@ -159,14 +160,16 @@ class ConversationContext:
         return self.active_topic
 
     def clear(self):
-        """Forget the current conversation topic."""
+        """Forget the current conversation state."""
         self.active_topic = None
         self.active_subtopic = None
+        self.troubleshooting_step = None
 
     def set_topic(self, topic):
-        """Change topics and clear outdated subtopic memory."""
+        """Change topics and clear outdated conversation state."""
         if topic != self.active_topic:
             self.active_subtopic = None
+            self.troubleshooting_step = None
 
         self.active_topic = topic
         return self.active_topic
@@ -191,6 +194,27 @@ class ConversationContext:
     def clear_subtopic(self):
         """Forget the current conversational subtopic."""
         self.active_subtopic = None
+
+    def set_troubleshooting_step(self, step):
+        """Remember the current troubleshooting question."""
+        if not isinstance(step, str):
+            return False
+
+        step = step.strip()
+
+        if not step:
+            return False
+
+        self.troubleshooting_step = step
+        return True
+
+    def get_troubleshooting_step(self):
+        """Return the current troubleshooting question."""
+        return self.troubleshooting_step
+
+    def clear_troubleshooting_step(self):
+        """Clear the current troubleshooting question."""
+        self.troubleshooting_step = None
 
     def is_robot_followup(self, message):
         """Detect robot follow-ups using the shared classifier."""

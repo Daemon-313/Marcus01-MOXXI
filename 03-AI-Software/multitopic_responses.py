@@ -130,8 +130,30 @@ def respond_with_multitopic_context(message, context):
             )
 
     # Context-aware follow-ups for everyday topics.
+    if (
+        topic == "laptop"
+        and context.get_subtopic() == "charging"
+        and context.get_troubleshooting_step()
+        == "checking_charger_connection"
+    ):
+        answer = re.sub(r"\s+", " ", text.replace(",", " ")).strip()
+        if answer in (
+            "yes but the battery percentage isn't increasing",
+            "yes but the battery percentage is not increasing",
+            "yes but it's not charging",
+            "yes but it is not charging",
+        ):
+            context.clear_troubleshooting_step()
+            return (
+                "Gotcha, sugar! Your laptop detects the charger, "
+                "but the battery percentage isn't increasing. "
+                "Let's check whether the charger supplies enough "
+                "power. Are you using the original charger?"
+            )
+
     if topic == "laptop" and context.get_subtopic() == "charging":
         if text in ("it's not charging", "it is not charging"):
+            context.set_troubleshooting_step("checking_charger_connection")
             return (
                 "If your laptop isn't charging, sugar, "
                 "first check the power outlet, charger, "
