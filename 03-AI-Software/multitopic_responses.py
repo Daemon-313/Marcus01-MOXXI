@@ -130,7 +130,79 @@ def respond_with_multitopic_context(message, context):
             )
 
     # Context-aware follow-ups for everyday topics.
+    if topic == "laptop" and context.get_subtopic() == "charging":
+        if text in ("it's not charging", "it is not charging"):
+            return (
+                "If your laptop isn't charging, sugar, "
+                "first check the power outlet, charger, "
+                "and charging connection. "
+                "Does the laptop show that it's plugged in?"
+            )
+
+        if text in ("it's charging slowly", "it is charging slowly"):
+            return (
+                "Slow charging can happen when the charger "
+                "doesn't supply enough power, darling. "
+                "Are you using the original charger "
+                "that came with your laptop?"
+            )
+
+        if text in (
+            "it loses power while plugged in",
+            "it's losing power while plugged in",
+        ):
+            return (
+                "If your laptop loses battery power while "
+                "plugged in, sugar, the charger might not "
+                "be supplying enough power. "
+                "Does this happen during gaming or heavy use, "
+                "or even when the laptop is idle?"
+            )
+
+    if topic == "laptop" and context.get_subtopic() == "battery_replacement":
+        if text in (
+            "find a compatible battery",
+            "find a replacement battery",
+        ):
+            return (
+                "I can help you figure out which battery fits, "
+                "sugar! What's your laptop's manufacturer "
+                "and exact model number? We'll need those "
+                "before identifying a compatible replacement."
+            )
+
+        if text in (
+            "does it need replacing",
+            "does the battery need replacing",
+        ):
+            return (
+                "A worn-out laptop battery may drain quickly, "
+                "shut down unexpectedly, or stop holding a "
+                "charge, darling. Is yours showing any of "
+                "those symptoms? If the battery is swollen, "
+                "stop using or charging it."
+            )
+
     if topic == "laptop":
+        if text in ("charging", "charging it"):
+            context.set_subtopic("charging")
+            return (
+                "Is your laptop charging slowly, not charging "
+                "at all, or losing power while plugged in, sugar?"
+            )
+
+        if text in (
+            "replacing it",
+            "battery replacement",
+            "replacing the battery",
+        ):
+            context.set_subtopic("battery_replacement")
+            return (
+                "Are you looking for a compatible replacement "
+                "battery, or trying to determine whether your "
+                "current battery needs replacing, darling?"
+            )
+
         if text in ("battery life", "the battery life"):
             context.set_subtopic("battery_life")
             return (
