@@ -11,6 +11,7 @@ class ConversationContext:
         self.active_topic = None
         self.active_subtopic = None
         self.troubleshooting_step = None
+        self.diagnostic_details = {}
 
     def update(self, message):
         """Recognize an explicitly mentioned topic."""
@@ -164,12 +165,14 @@ class ConversationContext:
         self.active_topic = None
         self.active_subtopic = None
         self.troubleshooting_step = None
+        self.diagnostic_details = {}
 
     def set_topic(self, topic):
         """Change topics and clear outdated conversation state."""
         if topic != self.active_topic:
             self.active_subtopic = None
             self.troubleshooting_step = None
+            self.diagnostic_details = {}
 
         self.active_topic = topic
         return self.active_topic
