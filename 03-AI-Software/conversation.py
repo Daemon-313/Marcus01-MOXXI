@@ -45,11 +45,15 @@ def respond(message, memory):
         "cancel that",
     )
 
-    if pending is not None and text in cancellation_phrases:
+    if text in cancellation_phrases and (
+        pending is not None
+        or _conversation_context.get_troubleshooting_step() is not None
+    ):
         _clarification_state.clear()
+        _conversation_context.clear()
         return (
             "No problem, sugar! "
-            "We can talk about something else."
+            "We'll stop troubleshooting for now."
         )
 
     if pending is not None:
