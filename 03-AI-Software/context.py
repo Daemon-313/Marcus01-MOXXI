@@ -123,6 +123,12 @@ class ConversationContext:
             return self.active_topic
 
         topic_terms = {
+            "laptop": (
+                "my laptop",
+                "my notebook",
+                "my computer",
+                "my macbook",
+            ),
             "voice": (
                 "your voice",
                 "which voice are you using",

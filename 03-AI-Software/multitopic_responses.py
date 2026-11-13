@@ -761,6 +761,29 @@ def respond_with_multitopic_context(message, context):
                 "requirements. What's your laptop's model number?"
             )
 
+    # Start laptop charging troubleshooting from a new request.
+    if (
+        topic == "laptop"
+        and text in (
+            "my laptop isn't charging",
+            "my laptop is not charging",
+            "my computer isn't charging",
+            "my computer is not charging",
+            "my notebook isn't charging",
+            "my notebook is not charging",
+        )
+    ):
+        context.set_subtopic("charging")
+        context.set_troubleshooting_step(
+            "checking_charger_connection"
+        )
+        return (
+            "If your laptop isn't charging, sugar, "
+            "first check the power outlet, charger, "
+            "and charging connection. "
+            "Does the laptop show that it's plugged in?"
+        )
+
     # Context-aware follow-ups for everyday topics.
     if (
         topic == "laptop"
