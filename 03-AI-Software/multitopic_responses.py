@@ -774,6 +774,9 @@ def respond_with_multitopic_context(message, context):
             "my laptop won't charge",
             "my computer won't charge",
             "my notebook won't charge",
+            "my laptop battery won't charge",
+            "my laptop battery isn't charging",
+            "my laptop battery is not charging",
         )
     ):
         context.set_subtopic("charging")
