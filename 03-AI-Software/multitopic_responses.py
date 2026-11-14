@@ -778,6 +778,32 @@ def respond_with_multitopic_context(message, context):
             "my laptop battery isn't charging",
             "my laptop battery is not charging",
         )
+        or (
+            topic == "laptop"
+            and not any(
+                payment_phrase in text
+                for payment_phrase in (
+                    "charging me",
+                    "charging us",
+                    "charging a fee",
+                    "charge a fee",
+                    "charge a subscription",
+                    "charging for",
+                    "charge me",
+                )
+            )
+            and any(
+                phrase in text
+                for phrase in (
+                    "not charging",
+                    "isn't charging",
+                    "won't charge",
+                    "will not charge",
+                    "not taking a charge",
+                    "isn't taking a charge",
+                )
+            )
+        )
     ):
         context.set_subtopic("charging")
         context.set_troubleshooting_step(
