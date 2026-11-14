@@ -761,6 +761,32 @@ def respond_with_multitopic_context(message, context):
                 "requirements. What's your laptop's model number?"
             )
 
+    # Recognize connected-device charging problems.
+    if topic == "laptop" and any(
+        phrase in text
+        for phrase in (
+            "not charging",
+            "isn't charging",
+            "won't charge",
+            "will not charge",
+        )
+    ) and any(
+        device_phrase in text
+        for device_phrase in (
+            "charging my phone",
+            "charging the phone",
+            "charging my tablet",
+            "charging the tablet",
+            "charging my headphones",
+            "charging my earbuds",
+        )
+    ):
+        return (
+            "Sounds like your laptop isn't charging the connected "
+            "device, sugar. Have you tried a different USB cable "
+            "or USB port?"
+        )
+
     # Start laptop charging troubleshooting from a new request.
     if (
         topic == "laptop"
