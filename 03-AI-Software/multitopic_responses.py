@@ -792,6 +792,17 @@ def respond_with_multitopic_context(message, context):
                     "charge me",
                 )
             )
+            and not any(
+                device_phrase in text
+                for device_phrase in (
+                    "charging my phone",
+                    "charging the phone",
+                    "charging my tablet",
+                    "charging the tablet",
+                    "charging my headphones",
+                    "charging my earbuds",
+                )
+            )
             and any(
                 phrase in text
                 for phrase in (
