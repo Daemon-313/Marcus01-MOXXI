@@ -129,6 +129,26 @@ def respond_with_multitopic_context(message, context):
                 "are still on our development roadmap."
             )
 
+    # Continue USB charging troubleshooting.
+    if (
+        context.get_subtopic() == "usb_charging"
+        and context.get_troubleshooting_step() == "checking_usb_cable"
+    ):
+        if any(
+            phrase in text
+            for phrase in (
+                "tried another cable",
+                "tried a different cable",
+                "tried another usb cable",
+                "tried a different usb cable",
+            )
+        ):
+            context.set_troubleshooting_step("checking_usb_port")
+            return (
+                "Alright, sugar, we've ruled out the cable. "
+                "Have you tried another USB port on your computer?"
+            )
+
     # Calculate remaining battery capacity from a Windows report.
     if (
         topic == "laptop"
@@ -787,6 +807,8 @@ def respond_with_multitopic_context(message, context):
             "charge my earbuds",
         )
     ):
+        context.set_subtopic("usb_charging")
+        context.set_troubleshooting_step("checking_usb_cable")
         return (
             "Sounds like your computer isn't charging the connected "
             "device, sugar. Have you tried a different USB cable "
