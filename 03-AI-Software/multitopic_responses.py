@@ -779,6 +779,12 @@ def respond_with_multitopic_context(message, context):
             "charging the tablet",
             "charging my headphones",
             "charging my earbuds",
+            "charge my phone",
+            "charge the phone",
+            "charge my tablet",
+            "charge the tablet",
+            "charge my headphones",
+            "charge my earbuds",
         )
     ):
         return (
@@ -827,6 +833,12 @@ def respond_with_multitopic_context(message, context):
                     "charging the tablet",
                     "charging my headphones",
                     "charging my earbuds",
+                    "charge my phone",
+                    "charge the phone",
+                    "charge my tablet",
+                    "charge the tablet",
+                    "charge my headphones",
+                    "charge my earbuds",
                 )
             )
             and any(
