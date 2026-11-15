@@ -762,7 +762,7 @@ def respond_with_multitopic_context(message, context):
             )
 
     # Recognize connected-device charging problems.
-    if topic == "laptop" and any(
+    if (topic == "laptop" or "usb port" in text) and any(
         phrase in text
         for phrase in (
             "not charging",
@@ -788,7 +788,7 @@ def respond_with_multitopic_context(message, context):
         )
     ):
         return (
-            "Sounds like your laptop isn't charging the connected "
+            "Sounds like your computer isn't charging the connected "
             "device, sugar. Have you tried a different USB cable "
             "or USB port?"
         )
